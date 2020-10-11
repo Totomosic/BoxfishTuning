@@ -35,7 +35,7 @@ class BoxfishSource:
 
     def build_linux(self, jobs=4):
         scripts_directory = os.path.join(self.folder, "Scripts")
-        if CommandLine("./vendor/bin/linux/premake/premake5 gmake2", working_directory=self.folder).run() != CommandLine.SUCCESS:
+        if CommandLine("./vendor/bin/Linux/premake/premake5 gmake2", working_directory=self.folder).run() != CommandLine.SUCCESS:
             return None
         if CommandLine("make -j {} Boxfish-Cli config=dist".format(jobs), working_directory=self.folder).run() != CommandLine.SUCCESS:
             return None
