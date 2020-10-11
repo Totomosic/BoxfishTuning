@@ -15,8 +15,8 @@ from Services.Matches.BoxfishSource import BoxfishSource, checkout_source
 from Services.Matches.MatchManager import MatchManager
 from Services.Matches.utils import ensure_directory_exists, read_config_file, delete_recursive
 
-OS_LINUX = 0
-OS_WINDOWS = 1
+OS_LINUX = "linux"
+OS_WINDOWS = "windows"
 
 class Config:
     def __init__(self):

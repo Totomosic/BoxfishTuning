@@ -35,8 +35,8 @@ class BoxfishSource:
 
     def build_linux(self, jobs=4):
         scripts_directory = os.path.join(self.folder, "Scripts")
-        if CommandLine("./Linux-GenProjects.sh < /dev/nul", working_directory=scripts_directory).run() != CommandLine.SUCCESS:
+        if CommandLine("./vendor/bin/linux/premake/premake5 gmake2", working_directory=self.folder).run() != CommandLine.SUCCESS:
             return None
         if CommandLine("make -j {} Boxfish-Cli config=dist".format(jobs), working_directory=self.folder).run() != CommandLine.SUCCESS:
             return None
-        return os.path.join(self.folder, "bin", "Dist-linux-x86_64", "Boxfish-Cli", "Boxfish-Cli.exe")
+        return os.path.join(self.folder, "bin", "Dist-linux-x86_64", "Boxfish-Cli", "Boxfish-Cli")
