@@ -58,7 +58,7 @@ class CommandLine:
     def run(self):
         with ChangeDirectory(self.working_directory):
             print(self.command)
-            return subprocess.run(self.command).returncode
+            return os.system(self.command)
 
     @staticmethod
     def chain(*command_lines, working_directory=None):
