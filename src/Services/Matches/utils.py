@@ -3,6 +3,8 @@ import os
 import subprocess
 import shutil
 
+from Services.Logging import logger
+
 def directory_exists(directory):
     return os.path.exists(directory)
 
@@ -13,7 +15,7 @@ def delete_recursive(directory):
     try:
         shutil.rmtree(directory)
     except Exception as e:
-        print(e)
+        logger.error(e)
 
 def read_config_file(filename):
     config = {}

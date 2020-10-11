@@ -1,0 +1,10 @@
+server = localhost
+port = 9091
+os = windows
+
+cache_directory = Engines/
+
+boxfish_repo = https://github.com/Totomosic/Boxfish
+boxfish_directory = Boxfish/
+
+match_directory = Matches/

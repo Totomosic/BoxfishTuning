@@ -1,7 +1,7 @@
 import os
 import sys
 
-from Lib.utils import CommandLine, ChangeDirectory, directory_exists, ensure_directory_exists
+from Services.Matches.utils import CommandLine, ChangeDirectory, directory_exists, ensure_directory_exists
 
 def checkout_source(folder, repo, branch=None, commit=None):
     if not directory_exists(folder):
