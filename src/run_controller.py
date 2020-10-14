@@ -48,8 +48,7 @@ class CommandServer:
 
         logger.info("Starting command server listening at {} port {}".format(self.server, self.port))
 
-        thread = threading.Thread(target=self._accept_connections, daemon=True)
-        thread.start()
+        self._accept_connections()
 
     def _accept_connections(self):
         while True:
@@ -92,9 +91,6 @@ class CommandServer:
 class Controller:
     def __init__(self, config):
         self.config = config
-        self.command_server = CommandServer(self.config.server, int(self.config.port))
-        self.command_server.set_command_listener(self.process_commandline)
-        self.command_server.start()
 
         self.cache_manager = CacheManager(self.config.cache_directory)
 
@@ -105,6 +101,10 @@ class Controller:
         self.commands["clear_matches"] = self._handle_clear_matches
         self.commands["summarise"] = self._handle_summarise
         self.commands["play"] = self._handle_play
+
+        self.command_server = CommandServer(self.config.server, int(self.config.port))
+        self.command_server.set_command_listener(self.process_commandline)
+        self.command_server.start()
 
     def process_commandline(self, command):
         parts = re.findall(r'(?:[^\s "]|"(?:\\.|[^"])*")+', command)
@@ -209,5 +209,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     controller = Controller(read_config(args.config_file))
-    while True:
-        pass
